@@ -1,0 +1,2446 @@
+######Import######
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
+import tkinter as tk
+from numpy import *
+import serial as sr
+import time
+
+######Global Variables######
+arrayX = []
+arrayY1 = []
+arrayY2 = []
+
+HState = 0
+Tem = 0
+Mag = 0
+HNum = 0
+
+Heater_State = 0
+Heater1_SW = 0
+Heater2_SW = 0
+Heater3_SW = 0
+Heater4_SW = 0
+Heater5_SW = 0
+Heater6_SW = 0
+Heater7_SW = 0
+Heater8_SW = 0
+Heater9_SW = 0
+Heater10_SW = 0
+Heater11_SW = 0
+Heater12_SW = 0
+Heater13_SW = 0
+Heater14_SW = 0
+Heater15_SW = 0
+Heater16_SW = 0
+Heater17_SW = 0
+Heater18_SW = 0
+Heater19_SW = 0
+Heater20_SW = 0
+Heater21_SW = 0
+Heater22_SW = 0
+Heater23_SW = 0
+Heater24_SW = 0
+Heater25_SW = 0
+Heater26_SW = 0
+Heater27_SW = 0
+Heater28_SW = 0
+Heater29_SW = 0
+Heater30_SW = 0
+Heater31_SW = 0
+Heater32_SW = 0
+
+num = 0
+cnt=0
+######Start Serial Port######
+s = sr.Serial('COM5',115200)
+time.sleep(0.5)
+s.flush()
+
+######Data Plotting Function######
+def plot_data():
+    global arrayX, arrayY1, arrayY2 ### X is time, Y1 and Y2 are temperature and magnetic voltage
+      
+    if Heater_State == 1: ### Shows data depending on heater selection
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline() ### Read byte data
+        lst = eval(bytes[:-2].decode()) ### Encoding bytes to number array
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt)  
+
+    elif Heater_State == 2:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt)  
+
+    elif Heater_State == 3:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt)  
+
+    elif Heater_State == 4:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt)
+
+    elif Heater_State == 5:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt)  
+
+    elif Heater_State == 6:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt)  
+
+    elif Heater_State == 7:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt)
+
+    elif Heater_State == 8:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt)  
+
+    elif Heater_State == 9:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt)  
+            
+    elif Heater_State == 10:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt)  
+
+    elif Heater_State == 11:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 12:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 13:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 14:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 15:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 16:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 17:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 18:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 19:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 20:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 21:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 22:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 23:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 24:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 25:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 26:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 27:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 28:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 29:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 30:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]#/1000.0
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 31:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    elif Heater_State == 32:
+        ax1.set_xlim(0,10000)
+
+        bytes = s.readline()
+        lst = eval(bytes[:-2].decode())
+
+        time = lst[0]
+        arrayX.append(time)
+        arrayY1.append(lst[1])
+        arrayY2.append(lst[2]) 
+
+        lines1.set_xdata(arrayX)
+        lines1.set_ydata(arrayY1)
+        lines2.set_xdata(arrayX)
+        lines2.set_ydata(arrayY2)
+
+        cnt=cnt+time
+        if cnt>10000:
+            ax1.set_xlim(cnt-10000,cnt) 
+
+    canvas.draw()
+    
+    root.after((1),plot_data)
+
+######Tkinter Open######
+root = tk.Tk()
+
+root.title('Real Time Plot')
+root.configure(background = 'black')
+#root.attributes('-fullscreen',True) ### Can be used if you want fullscreen size
+root.geometry("1536x960") ### Set the window size
+
+root.resizable(True, True)
+
+var_tem=tk.IntVar()
+
+######Labels######
+slide_labeltem = tk.Label(root, text="Temperature (°C)", fg="white", bg="black", width=15)
+slide_labeltem.place(x=75, y=550)
+
+slide_labelduty = tk.Label(root, text="Duty Cycle (%)", fg="white", bg="black", width=15)
+slide_labelduty.place(x=297, y=550)
+
+######Temperature Function######
+def select_tem(self):
+    global Tem, HState, Mag, HNum
+    value="H"+str(scale_tem.get())
+    if (value == "H35"):
+        Tem = 0
+    elif(value == "H45"):
+        Tem = 1
+    elif(value == "H55"):
+        Tem = 2
+    Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E" ### Sending bytes data to the control panel
+    Trans= Trans.encode('utf-8')
+    s.write(Trans)
+
+scale_tem=tk.Scale(root, variable=var_tem, command=select_tem, orient="vertical", width = 40, showvalue=True, tickinterval=10, from_=55, to=35, resolution=10, length=250)
+scale_tem.place(x=85, y=580)
+
+######Duty Ratio Function######
+def on_100():
+    global Mag, Tem, HState, HNum
+    b1.configure(bg="red")
+    b2.configure(bg="gainsboro")
+    b3.configure(bg="gainsboro")
+    b4.configure(bg="gainsboro")
+    b5.configure(bg="gainsboro")
+    b6.configure(bg="gainsboro")
+    Mag = 5
+    Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+    Trans= Trans.encode('utf-8')
+    s.write(Trans)
+
+def on_80():
+    global Mag, Tem, HState, HNum
+    b1.configure(bg="gainsboro")
+    b2.configure(bg="red")
+    b3.configure(bg="gainsboro")
+    b4.configure(bg="gainsboro")
+    b5.configure(bg="gainsboro")
+    b6.configure(bg="gainsboro")
+    Mag = 4
+    Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+    Trans= Trans.encode('utf-8')
+    s.write(Trans)
+
+def on_60():
+    global Mag, Tem, HState, HNum
+    b1.configure(bg="gainsboro")
+    b2.configure(bg="gainsboro")
+    b3.configure(bg="red")
+    b4.configure(bg="gainsboro")
+    b5.configure(bg="gainsboro")
+    b6.configure(bg="gainsboro")
+    Mag = 3
+    Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+    Trans= Trans.encode('utf-8')
+    s.write(Trans)
+
+def on_40():
+    global Mag, Tem, HState, HNum
+    b1.configure(bg="gainsboro")
+    b2.configure(bg="gainsboro")
+    b3.configure(bg="gainsboro")
+    b4.configure(bg="red")
+    b5.configure(bg="gainsboro")
+    b6.configure(bg="gainsboro")
+    Mag = 2
+    Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+    Trans= Trans.encode('utf-8')
+    s.write(Trans)
+
+def on_20():
+    global Mag, Tem, HState, HNum
+    b1.configure(bg="gainsboro")
+    b2.configure(bg="gainsboro")
+    b3.configure(bg="gainsboro")
+    b4.configure(bg="gainsboro")
+    b5.configure(bg="red")
+    b6.configure(bg="gainsboro")
+    print("20%")
+    Mag = 1
+    Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+    Trans= Trans.encode('utf-8')
+    s.write(Trans)
+
+def on_0():
+    global Mag, Tem, HState, HNum
+    b1.configure(bg="gainsboro")
+    b2.configure(bg="gainsboro")
+    b3.configure(bg="gainsboro")
+    b4.configure(bg="gainsboro")
+    b5.configure(bg="gainsboro")
+    b6.configure(bg="red")
+    Mag = 0
+    Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+    Trans= Trans.encode('utf-8')
+    s.write(Trans)
+   
+b1 = tk.Button(root, text="100%", relief= "groove", overrelief="solid", bg="gainsboro", command=on_100, activebackground="red", disabledforeground= "gainsboro", width=15, height=3, repeatdelay=1000, repeatinterval=100)
+b1.place(x=225, y=580)
+
+b2 = tk.Button(root, text="80%", relief= "groove", overrelief="solid", bg="gainsboro", command=on_80, activebackground="red", disabledforeground= "gainsboro", width=15, height=3, repeatdelay=1000, repeatinterval=100)
+b2.place(x=365, y=580)
+
+b3 = tk.Button(root, text="60%", relief= "groove", overrelief="solid", bg="gainsboro", command=on_60, activebackground="red", disabledforeground= "gainsboro", width=15, height=3, repeatdelay=1000, repeatinterval=100)
+b3.place(x=225, y=680)
+
+b4 = tk.Button(root, text="40%", relief= "groove", overrelief="solid", bg="gainsboro", command=on_40, activebackground="red", disabledforeground= "gainsboro", width=15, height=3, repeatdelay=1000, repeatinterval=100)
+b4.place(x=365, y=680)
+
+b5 = tk.Button(root, text="20%", relief= "groove", overrelief="solid", bg="gainsboro", command=on_20, activebackground="red", disabledforeground= "gainsboro", width=15, height=3, repeatdelay=1000, repeatinterval=100)
+b5.place(x=225, y=780)
+
+b6 = tk.Button(root, text="0%", relief= "groove", overrelief="solid", bg="gainsboro", command=on_0, activebackground="red", disabledforeground= "gainsboro", width=15, height=3, repeatdelay=1000, repeatinterval=100)
+b6.place(x=365, y=780)
+
+######Heater Selection Function######
+def SW_Heater_1():
+    global Heater1_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater1_SW == 0:
+        Heater1.configure(bg="red") ### Change activated heater button color to red
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35) ### Initialize heater temperature to 35
+        HState = 1
+        HNum = 1
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater1_SW = 1
+
+        ax1.clear() ### Assign the corresponding graphs for a heater in terms of temperature and duty ratio
+        ax2.clear()
+        ax1.set_title('Heater1')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 1
+    else:
+        Heater1.configure(bg="blue") ### Deselect heater
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater1_SW = 0
+
+def SW_Heater_2():
+    global Heater2_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater2_SW == 0:
+        Heater2.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 2
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater2_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater2')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 2
+    else:
+        Heater2.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater2_SW = 0
+
+def SW_Heater_3():
+    global Heater3_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater3_SW == 0:
+        Heater3.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 3
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater3_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater3')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 3
+    else:
+        Heater3.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater3_SW = 0
+
+def SW_Heater_4():
+    global Heater4_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater4_SW == 0:
+        Heater4.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 4
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater4_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater4')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 4
+    else:
+        Heater4.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater4_SW = 0
+
+def SW_Heater_5():
+    global Heater5_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater5_SW == 0:
+        Heater5.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 5
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater5_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater5')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 5
+    else:
+        Heater5.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater5_SW = 0
+
+def SW_Heater_6():
+    global Heater6_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater6_SW == 0:
+        Heater6.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 6
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater6_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater6')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 6
+    else:
+        Heater6.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater6_SW = 0
+
+def SW_Heater_7():
+    global Heater7_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater7_SW == 0:
+        Heater7.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 7
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater7_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater7')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 7
+    else:
+        Heater7.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater7_SW = 0
+
+def SW_Heater_8():
+    global Heater8_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater8_SW == 0:
+        Heater8.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 8
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater8_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater8')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 8
+    else:
+        Heater8.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater8_SW = 0
+
+def SW_Heater_9():
+    global Heater9_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater9_SW == 0:
+        Heater9.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 9
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater9_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater9')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 9
+    else:
+        Heater9.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater9_SW = 0
+
+def SW_Heater_10():
+    global Heater10_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater10_SW == 0:
+        Heater10.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 10
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater10_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater10')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 10
+    else:
+        Heater10.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater10_SW = 0
+
+def SW_Heater_11():
+    global Heater11_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater11_SW == 0:
+        Heater11.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 11
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater11_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater11')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 11
+    else:
+        Heater11.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater11_SW = 0
+
+def SW_Heater_12():
+    global Heater12_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater12_SW == 0:
+        Heater12.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 12
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater12_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater12')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 12
+    else:
+        Heater12.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater12_SW = 0
+
+def SW_Heater_13():
+    global Heater13_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater13_SW == 0:
+        Heater13.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 13
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater13_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater13')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 13
+    else:
+        Heater13.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater13_SW = 0
+
+def SW_Heater_14():
+    global Heater14_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater14_SW == 0:
+        Heater14.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 14
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater14_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater14')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 14
+    else:
+        Heater14.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater14_SW = 0
+
+def SW_Heater_15():
+    global Heater15_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater15_SW == 0:
+        Heater15.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 15
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater15_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater15')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 15
+    else:
+        Heater15.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater15_SW = 0
+
+def SW_Heater_16():
+    global Heater16_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater16_SW == 0:
+        Heater16.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 16
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater16_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater16')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 16
+    else:
+        Heater16.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater16_SW = 0
+
+def SW_Heater_17():
+    global Heater17_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater17_SW == 0:
+        Heater17.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 17
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater17_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater17')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 17
+    else:
+        Heater17.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater17_SW = 0
+
+def SW_Heater_18():
+    global Heater18_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater18_SW == 0:
+        Heater18.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 18
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater18_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater18')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 18
+    else:
+        Heater18.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater18_SW = 0
+
+def SW_Heater_19():
+    global Heater19_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater19_SW == 0:
+        Heater19.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 19
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater19_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater19')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 19
+    else:
+        Heater19.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater19_SW = 0
+
+def SW_Heater_20():
+    global Heater20_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater20_SW == 0:
+        Heater20.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 20
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater20_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater20')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 20
+    else:
+        Heater20.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater20_SW = 0
+
+def SW_Heater_21():
+    global Heater21_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater21_SW == 0:
+        Heater21.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 21
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater21_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater21')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 21
+    else:
+        Heater21.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater21_SW = 0
+
+def SW_Heater_22():
+    global Heater22_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater22_SW == 0:
+        Heater22.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 22
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater22_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater22')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 22
+    else:
+        Heater22.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater22_SW = 0
+
+def SW_Heater_23():
+    global Heater23_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater23_SW == 0:
+        Heater23.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 23
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater23_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater23')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 23
+    else:
+        Heater23.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater23_SW = 0
+
+def SW_Heater_24():
+    global Heater24_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater24_SW == 0:
+        Heater24.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 24
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater24_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater24')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 24
+    else:
+        Heater24.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater24_SW = 0
+
+def SW_Heater_25():
+    global Heater25_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater25_SW == 0:
+        Heater25.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 25
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater25_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater25')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 25
+    else:
+        Heater25.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater25_SW = 0
+
+def SW_Heater_26():
+    global Heater26_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater26_SW == 0:
+        Heater26.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 26
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater26_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater26')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 26
+    else:
+        Heater26.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater26_SW = 0
+
+def SW_Heater_27():
+    global Heater27_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater27_SW == 0:
+        Heater27.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 27
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater27_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater27')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 27
+    else:
+        Heater27.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater27_SW = 0
+
+def SW_Heater_28():
+    global Heater28_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater28_SW == 0:
+        Heater28.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 28
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater28_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater28')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 28
+    else:
+        Heater28.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater28_SW = 0
+
+def SW_Heater_29():
+    global Heater29_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater29_SW == 0:
+        Heater29.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 29
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater29_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater29')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 29
+    else:
+        Heater29.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater29_SW = 0
+
+def SW_Heater_30():
+    global Heater30_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater30_SW == 0:
+        Heater30.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 30
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater30_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater30')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 30
+    else:
+        Heater30.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater30_SW = 0
+
+def SW_Heater_31():
+    global Heater31_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater31_SW == 0:
+        Heater31.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 31
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater31_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater31')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 31
+    else:
+        Heater31.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater31_SW = 0
+
+def SW_Heater_32():
+    global Heater32_SW, HState, Mag, Tem, lines1, lines2, cnt, Heater_State, HNum
+    if Heater32_SW == 0:
+        Heater32.configure(bg="red")
+        b1.configure(bg="gainsboro")
+        b2.configure(bg="gainsboro")
+        b3.configure(bg="gainsboro")
+        b4.configure(bg="gainsboro")
+        b5.configure(bg="red")
+        b6.configure(bg="gainsboro")
+        scale_tem.set(35)
+        HState = 1
+        HNum = 32
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater32_SW = 1
+
+        ax1.clear()
+        ax2.clear()
+        ax1.set_title('Heater32')
+        ax1.set_xlabel('Time (ms)')
+        ax1.set_ylabel('Temperature (°C)')
+        ax1.set_xlim(0,10)
+        ax1.set_ylim(20,60)
+        lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+        ax1.set(xlabel=None)
+        ax1.set_xticks([])
+
+        ax2.set_title('Magnet Coil Input')
+        ax2.set_xlabel('Time (ms)')
+        ax2.set_ylabel('Voltage (V)')
+        ax2.set_ylim(-2,2)
+        lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+        ax2.set(xlabel=None)
+
+        cnt = 0
+        Heater_State = 32
+    else:
+        Heater32.configure(bg="blue")
+        HState = 0
+        Trans= str (HNum) + str(HState) + str(Tem) + str(Mag) + "E"
+        Trans= Trans.encode('utf-8')
+        s.write(Trans)
+        Heater32_SW = 0
+
+
+######Heater Buttons Positions######
+Heater1 = tk.Button(root, text="Heater1", relief= "groove", bg="blue", fg="white", command=SW_Heater_1, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater1.place(x=600, y=80)
+
+Heater2 = tk.Button(root, text="Heater2", relief= "groove", bg="blue", fg="white", command=SW_Heater_2, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater2.place(x=800, y=80)
+
+Heater3 = tk.Button(root, text="Heater3", relief= "groove", bg="blue", fg="white", command=SW_Heater_3, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater3.place(x=1000, y=80)
+
+Heater4 = tk.Button(root, text="Heater4", relief= "groove", bg="blue", fg="white", command=SW_Heater_4, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater4.place(x=1200, y=80)
+
+Heater5 = tk.Button(root, text="Heater5", relief= "groove", bg="blue", fg="white", command=SW_Heater_5, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater5.place(x=1400, y=80)
+
+Heater21 = tk.Button(root, text="Heater21", relief= "groove", bg="blue", fg="white", command=SW_Heater_21, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater21.place(x=700, y=180)
+
+Heater22 = tk.Button(root, text="Heater22", relief= "groove", bg="blue", fg="white", command=SW_Heater_22, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater22.place(x=900, y=180)
+
+Heater23 = tk.Button(root, text="Heater23", relief= "groove", bg="blue", fg="white", command=SW_Heater_23, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater23.place(x=1100, y=180)
+
+Heater24 = tk.Button(root, text="Heater24", relief= "groove", bg="blue", fg="white", command=SW_Heater_24, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater24.place(x=1300, y=180)
+
+Heater6 = tk.Button(root, text="Heater6", relief= "groove", bg="blue", fg="white", command=SW_Heater_6, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater6.place(x=600, y=280)
+
+Heater7 = tk.Button(root, text="Heater7", relief= "groove", bg="blue", fg="white", command=SW_Heater_7, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater7.place(x=800, y=280)
+
+Heater8 = tk.Button(root, text="Heater8", relief= "groove", bg="blue", fg="white", command=SW_Heater_8, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater8.place(x=1000, y=280)
+
+Heater9 = tk.Button(root, text="Heater9", relief= "groove", bg="blue", fg="white", command=SW_Heater_9, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater9.place(x=1200, y=280)
+
+Heater10 = tk.Button(root, text="Heater10", relief= "groove", bg="blue", fg="white", command=SW_Heater_10, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater10.place(x=1400, y=280)
+
+Heater25 = tk.Button(root, text="Heater25", relief= "groove", bg="blue", fg="white", command=SW_Heater_25, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater25.place(x=700, y=380)
+
+Heater26 = tk.Button(root, text="Heater26", relief= "groove", bg="blue", fg="white", command=SW_Heater_26, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater26.place(x=900, y=380)
+
+Heater27 = tk.Button(root, text="Heater27", relief= "groove", bg="blue", fg="white", command=SW_Heater_27, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater27.place(x=1100, y=380)
+
+Heater28 = tk.Button(root, text="Heater28", relief= "groove", bg="blue", fg="white", command=SW_Heater_28, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater28.place(x=1300, y=380)
+
+Heater11 = tk.Button(root, text="Heater11", relief= "groove", bg="blue", fg="white", command=SW_Heater_11, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater11.place(x=600, y=480)
+
+Heater12 = tk.Button(root, text="Heater12", relief= "groove", bg="blue", fg="white", command=SW_Heater_12, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater12.place(x=800, y=480)
+
+Heater13 = tk.Button(root, text="Heater13", relief= "groove", bg="blue", fg="white", command=SW_Heater_13, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater13.place(x=1000, y=480)
+
+Heater14 = tk.Button(root, text="Heater14", relief= "groove", bg="blue", fg="white", command=SW_Heater_14, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater14.place(x=1200, y=480)
+
+Heater15 = tk.Button(root, text="Heater15", relief= "groove", bg="blue", fg="white", command=SW_Heater_15, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater15.place(x=1400, y=480)
+
+Heater29 = tk.Button(root, text="Heater29", relief= "groove", bg="blue", fg="white", command=SW_Heater_29, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater29.place(x=700, y=580)
+
+Heater30 = tk.Button(root, text="Heater30", relief= "groove", bg="blue", fg="white", command=SW_Heater_30, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater30.place(x=900, y=580)
+
+Heater31 = tk.Button(root, text="Heater31", relief= "groove", bg="blue", fg="white", command=SW_Heater_31, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater31.place(x=1100, y=580)
+
+Heater32 = tk.Button(root, text="Heater32", relief= "groove", bg="blue", fg="white", command=SW_Heater_32, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater32.place(x=1300, y=580)
+
+Heater16 = tk.Button(root, text="Heater16", relief= "groove", bg="blue", fg="white", command=SW_Heater_16, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater16.place(x=600, y=680)
+
+Heater17 = tk.Button(root, text="Heater17", relief= "groove", bg="blue", fg="white", command=SW_Heater_17, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater17.place(x=800, y=680)
+
+Heater18 = tk.Button(root, text="Heater18", relief= "groove", bg="blue", fg="white", command=SW_Heater_18, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater18.place(x=1000, y=680)
+
+Heater19 = tk.Button(root, text="Heater19", relief= "groove", bg="blue", fg="white", command=SW_Heater_19, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater19.place(x=1200, y=680)
+
+Heater20 = tk.Button(root, text="Heater20", relief= "groove", bg="blue", fg="white", command=SW_Heater_20, repeatdelay=1000, repeatinterval=100, bd = 5, width=13, height=5)
+Heater20.place(x=1400, y=680)
+
+######Create Plot Object On GUI######
+fig = Figure()
+ax1 = fig.add_subplot(211)
+ax2 = fig.add_subplot(212, sharex=ax1)
+
+ax1.set_title('Heater') ### Initialize graphs
+ax1.set_xlabel('Time (ms)')
+ax1.set_ylabel('Temperature (°C)')
+ax1.set_xlim(0,10)
+ax1.set_ylim(20,60)
+lines1, = ax1.plot(arrayX, arrayY1, linestyle='solid', color='#CB0505')
+ax1.set(xlabel=None)
+ax1.set_xticks([])
+
+ax2.set_title('Magnet Coil Input');
+ax2.set_xlabel('Time (ms)')
+ax2.set_ylabel('Voltage (V)')
+ax2.set_ylim(-2,2)
+lines2, = ax2.plot(arrayX, arrayY2, linestyle='solid', color='#753909')
+ax2.set(xlabel=None)
+
+fig.subplots_adjust(left=0.125,
+                    bottom=0.1, 
+                    right=0.9, 
+                    top=0.9, 
+                    wspace=0.6, 
+                    hspace=0.4)                  
+
+canvas = FigureCanvasTkAgg(fig, master=root)
+canvas.get_tk_widget().place(x = 30,y=30, width = 530,height = 475)
+canvas.draw()
+
+root.after(1,plot_data)
+root.mainloop()

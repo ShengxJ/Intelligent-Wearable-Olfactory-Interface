@@ -1,0 +1,22 @@
+# --------------------------------------------------------
+# AI-driven personalized olfaction training plan
+# Licensed under The MIT License [see LICENSE for details]
+# By Shengxin Jia
+# Based on PuLP library
+# --------------------------------------------------------
+
+Requirements:
+Python>=3.4
+Numpy
+Pulp
+
+To execute the python scripts you need setup python with required libraries. We recommand platform such as Google Colab that requires no setup to use. To install Pulp, please following the guidelines on https://coin-or.github.io/pulp/index.html
+
+The README only show a simple example of this project with a example of training recording in "test.xlsx". with 6 trainings. Feel free to try with fewer training records.
+path = "test.xlsx" 
+sheetname = "Sheet1" #Training record file in reverse order
+rawdata = pd.read_excel(path,sheetname)
+rawdata=rawdata.to_numpy()
+test=Olfactory_Training_Subject(0.1,0.9) # setup a training subject
+test.forward_data_2_Q(rawdata) # feed training record into the subject
+test.action_recommend() # generate training actions based on training record
