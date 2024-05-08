@@ -25,7 +25,7 @@
 % Description
 % demand_check returns the index of
 %% Example
-% Given wind speed 0.92 m/s, 10 OG emits Q=4.2e-6 g/sec of OS2 (gardenia, mol=156.24 
+% Given wind speed 0.92 m/s, 10 OGs emit Q=4.2e-6 g/sec of OS2 (gardenia, mol=156.24 
 % g/mol)  at height H=1.6 m, plots controur with average concentration level of 
 % 30, 20 10 5 ppm.
 
@@ -50,7 +50,7 @@ for i = 1: length(z_list)
     plot_contourMatrix(ax,M,z-0.03,0,0,0,cmap_max,cmap_min,cmap);
 end
 %% 
-% Given zero wind speed, OG emits Q=1.2e-7 g/sec of OS3 (osmanthyus, mol=150.18 
+% Given zero wind speed, 2 OGs emit Q=2.4e-7 g/sec of OS3 (osmanthyus, mol=150.18 
 % g/mol)  at height H=0 m, plots controur with average concentration level of 
 % 30, 20 10 5 ppm.
 
@@ -95,6 +95,7 @@ N = M(2,1);index = N+1;X_ = M(1,2:index);Y_ = M(2,2:index);
 X=X_*cos(-pi)-Y_*sin(-pi);Y=X_*sin(-pi)+Y_*cos(-pi);
 range_ = [X;Y]; % emission distribution estimation at Height
 load example.mat % human user exploration data dtream with position,head vector, and velocity
+H_x=test(:,1);H_y=test(:,2);H_z=test(:,3);
 hw_dt = 0.07; 
 OG_dt = hw_dt+OG_time_2_nose;
 demand_check = OG_Demand_Check(test,OG_pos,range_,OG_dt);
